@@ -1,13 +1,14 @@
-import './App.css'
 
-import PageInit from './pages/PageInit'
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes'; // Importando as rotas da aplicação
+import './App.css';
+
 function App() {
-
   return (
-    <>
-     <PageInit></PageInit>
-    </>
-  )
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
 }
 
-export default App
+export default App;

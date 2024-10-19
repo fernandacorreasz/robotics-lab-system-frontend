@@ -1,20 +1,41 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import PageInit from '../pages/PageInit';
+import PrivateRoute from './PrivateRoute';
+import LoginPage from '../pages/login/LoginPage';
+import PageAdmin from '../pages/pageAdmin/PageAdmin';
+import PageLaboratorist from '../pages/pageLaboratorista/PageLaboratorist';
+import PageStudent from '../pages/pageStudent/PageStudent';
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/academico" element={<PageInit />} />
-
+      <Route path="/" element={<LoginPage />} />
+      <Route 
+        path="/admin" 
+        element={
+          <PrivateRoute requiredPermission={3}>
+            <PageAdmin />
+          </PrivateRoute>
+        } 
+      />
+      <Route 
+        path="/laboratorist" 
+        element={
+          <PrivateRoute requiredPermission={2}>
+            <PageLaboratorist />
+          </PrivateRoute>
+        } 
+      />
+      <Route 
+        path="/student" 
+        element={
+          <PrivateRoute requiredPermission={1}>
+            <PageStudent />
+          </PrivateRoute>
+        } 
+      />
     </Routes>
   );
-};
-
-export const routeNames: Record<string, string> = {
-  "/academico": "Academico",
-  "/academico/dashboard": "DashBoard",
- 
 };
 
 export default AppRoutes;
