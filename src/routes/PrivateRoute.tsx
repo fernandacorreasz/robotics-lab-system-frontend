@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 interface PrivateRouteProps {
-  children: JSX.Element;
+  children: JSX.Element;  // Corrigir a tipagem para JSX.Element
   requiredPermission: number;
 }
 
@@ -11,10 +11,10 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, requiredPermissio
   const permissionLevel = parseInt(localStorage.getItem('permissionLevel') || '0', 10);
 
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
-  if (permissionLevel < requiredPermission) {
+  if (permissionLevel !== requiredPermission) {
     return <Navigate to="/unauthorized" />;
   }
 

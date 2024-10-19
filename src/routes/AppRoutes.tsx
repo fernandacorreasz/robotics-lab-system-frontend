@@ -5,6 +5,7 @@ import LoginPage from '../pages/login/LoginPage';
 import PageAdmin from '../pages/pageAdmin/PageAdmin';
 import PageLaboratorist from '../pages/pageLaboratorista/PageLaboratorist';
 import PageStudent from '../pages/pageStudent/PageStudent';
+import UnauthorizedPage from '../pages/login/UnauthorizedPage';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const AppRoutes: React.FC = () => {
           </PrivateRoute>
         } 
       />
+      <Route path="/unauthorized" element={<UnauthorizedPage />} />
     </Routes>
   );
 };
