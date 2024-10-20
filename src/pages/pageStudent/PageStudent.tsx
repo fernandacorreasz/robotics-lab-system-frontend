@@ -4,7 +4,7 @@ import CustomBreadcrumb from '../../components/Common/CustomBreadcrumb';
 import { Outlet } from 'react-router-dom';
 import StudentSidebar from '../../components/Sidebar/StudentSidebar';
 
-const { Header, Content, Footer, Sider } = Layout;
+const {Content, Footer, Sider } = Layout;
 
 const PageStudent: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -18,11 +18,8 @@ const PageStudent: React.FC = () => {
         <StudentSidebar />
       </Sider>
       <Layout>
-        <Header style={{color: 'white', textAlign: 'center' }}>
-          Painel do Estudante
-        </Header>
         <CustomBreadcrumb />
-        <Content style={{ margin: '16px', padding: '24px', background: '#fff', minHeight: '280px' }}>
+        <Content style={{padding: '18px', background: '#fff', minHeight: '280px' }}>
           <Outlet />
         </Content>
         <Footer style={{ textAlign: 'center' }}>

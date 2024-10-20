@@ -1,84 +1,126 @@
-import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+import React, { useEffect, useState } from 'react';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, Radar, RadarChart,
+  PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer
+} from 'recharts';
+import { Card, Col, Row } from 'antd';
+import dashboardData from '../../assets/data-teste/mockDashboardStudantData.json'; // Importar o JSON
 
-const data = {
-  hoursSpent: [
-    { week: 'Semana 1', hours: 4 },
-    { week: 'Semana 2', hours: 7 },
-    { week: 'Semana 3', hours: 5 },
-    { week: 'Semana 4', hours: 6 }
-  ],
-  componentsUsed: [
-    { type: 'Resistores', quantity: 16 },
-    { type: 'Capacitores', quantity: 12 },
-    { type: 'LEDs', quantity: 10 },
-    { type: 'Sensores', quantity: 7 }
-  ],
-  timeDistribution: [
-    { project: 'Projeto A', percentage: 90 },
-    { project: 'Projeto B', percentage: 70 },
-    { project: 'Projeto C', percentage: 50 },
-    { project: 'Projeto D', percentage: 30 }
-  ],
-  loansAndReturns: [
-    { type: 'Empréstimos', quantity: 8 },
-    { type: 'Devoluções', quantity: 5 }
-  ]
-};
+// Tipos para os dados do Dashboard
+interface ActivityMetrics {
+  totalActivities: number;
+  completed: number;
+  inProgress: number;
+  notStarted: number;
+}
+
+interface TimeSpentMetrics {
+  labels: string[];
+  data: number[];
+}
+
+interface ComponentsUsedMetrics {
+  labels: string[];
+  data: number[];
+}
+
+interface ForumMetrics {
+  labels: string[];
+  data: number[];
+}
+
+interface CardData {
+  title: string;
+  metrics: ActivityMetrics | TimeSpentMetrics | ComponentsUsedMetrics | ForumMetrics;
+}
 
 const DashboardStudent: React.FC = () => {
+  const [cards, setCards] = useState<CardData[]>([]);
+
+  useEffect(() => {
+    // Simulando a requisição da API e setando os dados no estado
+    setCards(dashboardData.cards);
+  }, []);
+
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        {/* Gráfico de Horas Gastas em Atividades */}
-        <div>
-          <h3>Minhas Horas Gastas em Atividades</h3>
-          <LineChart width={400} height={300} data={data.hoursSpent}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="week" />
-            <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="hours" stroke="#8884d8" activeDot={{ r: 8 }} />
-          </LineChart>
-        </div>
+    <div style={{ padding: '20px' }}>
+      <Row gutter={[16, 16]}>
+        {/* Atividades Concluídas - Radar Chart */}
+        <Col span={12}>
+          <Card title={cards[0]?.title}>
+            <ResponsiveContainer width="100%" height={300}>
+              <RadarChart outerRadius={90} data={[
+                { subject: 'Concluídas', value: (cards[0]?.metrics as ActivityMetrics)?.completed || 0, fullMark: 50 },
+                { subject: 'Em Progresso', value: (cards[0]?.metrics as ActivityMetrics)?.inProgress || 0, fullMark: 50 },
+                { subject: 'Não Iniciadas', value: (cards[0]?.metrics as ActivityMetrics)?.notStarted || 0, fullMark: 50 }
+              ]}>
+                <PolarGrid />
+                <PolarAngleAxis dataKey="subject" />
+                <PolarRadiusAxis angle={30} domain={[0, 50]} />
+                <Radar name="Atividades" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+              </RadarChart>
+            </ResponsiveContainer>
+            <p>Este gráfico mostra o progresso das atividades, dividindo entre concluídas, em progresso e não iniciadas.</p>
+          </Card>
+        </Col>
 
-        {/* Gráfico de Componentes Usados */}
-        <div>
-          <h3>Componentes que Eu Usei em Atividades</h3>
-          <BarChart width={400} height={300} data={data.componentsUsed}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="type" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="quantity" fill="#82ca9d" />
-          </BarChart>
-        </div>
-      </div>
+        {/* Tempo Investido - Line Chart */}
+        <Col span={12}>
+          <Card title={cards[1]?.title}>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={(cards[1]?.metrics as TimeSpentMetrics)?.labels.map((label: string, index: number) => ({
+                name: label,
+                tempo: (cards[1]?.metrics as TimeSpentMetrics)?.data[index]
+              }))}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Line type="monotone" dataKey="tempo" stroke="#82ca9d" />
+              </LineChart>
+            </ResponsiveContainer>
+            <p>Este gráfico de linha mostra o tempo investido por mês em atividades relacionadas ao laboratório.</p>
+          </Card>
+        </Col>
 
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
-        {/* Gráfico de Distribuição de Tempo por Projeto */}
-        <div>
-          <h3>Distribuição do Meu Tempo por Projeto</h3>
-          <RadarChart cx={200} cy={150} outerRadius={100} width={400} height={300} data={data.timeDistribution}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="project" />
-            <PolarRadiusAxis />
-            <Radar name="Tempo" dataKey="percentage" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          </RadarChart>
-        </div>
+        {/* Componentes Utilizados - Bar Chart */}
+        <Col span={12}>
+          <Card title={cards[2]?.title}>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={(cards[2]?.metrics as ComponentsUsedMetrics)?.labels.map((label: string, index: number) => ({
+                name: label,
+                quantidade: (cards[2]?.metrics as ComponentsUsedMetrics)?.data[index]
+              }))}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="quantidade" fill="#8884d8" />
+              </BarChart>
+            </ResponsiveContainer>
+            <p>Este gráfico de barras mostra a quantidade de componentes eletrônicos utilizados durante as atividades.</p>
+          </Card>
+        </Col>
 
-        {/* Gráfico de Empréstimos vs Devoluções */}
-        <div>
-          <h3>Componentes que Eu Emprestei e Devolvi</h3>
-          <BarChart width={400} height={300} data={data.loansAndReturns}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="type" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="quantity" fill="#8884d8" />
-          </BarChart>
-        </div>
-      </div>
+        {/* Participação no Fórum - Bar Chart */}
+        <Col span={12}>
+          <Card title={cards[3]?.title}>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={(cards[3]?.metrics as ForumMetrics)?.labels.map((label: string, index: number) => ({
+                name: label,
+                valor: (cards[3]?.metrics as ForumMetrics)?.data[index]
+              }))}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="valor" fill="#82ca9d" />
+              </BarChart>
+            </ResponsiveContainer>
+            <p>Este gráfico de barras mostra a participação do estudante no fórum, incluindo postagens, respostas e curtidas.</p>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };
