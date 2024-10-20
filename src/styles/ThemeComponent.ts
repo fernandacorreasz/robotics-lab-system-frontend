@@ -32,7 +32,7 @@ export const Theme = {
         darkPopupBg: '#000',
         darkSubMenuItemBg: '#000',
         itemSelectedColor: '#fff',
-        itemSelectedBg: "#0075B1"
+        itemSelectedBg: "#42176b"
       },
       Button: {
         algorithm: true,
@@ -45,7 +45,7 @@ export const Theme = {
       },
       Table: {
         algorithm: true,
-        headerBg: "rgb(0, 87, 157)",
+        headerBg: "#42176b",
         headerColor: "rgba(255, 255, 255, 0.88)",
         headerSplitColor: "rgb(166, 166, 166)",
         colorText: "rgba(115, 115, 115, 0.88)",
@@ -95,7 +95,7 @@ export const Theme = {
         fontSize: 12
       },
       Pagination: {
-        colorPrimary: "rgb(0, 87, 157)",
+        colorPrimary: "#42176b",
         colorText: "rgb(52, 71, 103)",
         colorBgContainer: "rgb(255, 255, 255)",
         fontSize: 11,
@@ -114,7 +114,7 @@ export const Theme = {
         optionActiveBg: "rgba(0, 0, 0, 0.01)",
         colorText: "rgb(52, 71, 103)",
         multipleItemColorDisabled: "rgba(0, 0, 0, 0.02)",
-        selectorBg: "rgb(255, 255, 255)"
+        selectorBg: "#000"
       },
       Divider: {
         marginLG: 10,

@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Layout } from 'antd';
+import AdminSidebar from '../../components/Sidebar/AdminSidebar';
+import CustomBreadcrumb from '../../components/Common/CustomBreadcrumb';
+import { Outlet } from 'react-router-dom';
+
+const { Header, Content, Footer, Sider } = Layout;
 
 const PageAdmin: React.FC = () => {
-  return <h2>Página Admin</h2>;
+  const [collapsed, setCollapsed] = useState(false);
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed);
+  };
+
+  return (
+    <Layout style={{ minHeight: '100vh', width: "100%"  }}>
+      <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapse}>
+        <AdminSidebar />
+      </Sider>
+      <Layout  style={{width: 'max-content' }}>
+        <Header>
+          <div >Painel do Administrador</div>
+        </Header>
+        <CustomBreadcrumb />
+        <Content style={{ margin: '16px', padding: '24px', background: '#fff', minHeight: '280px' }}>
+          <Outlet />
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          ©2024 Robotics Lab Admin Panel
+        </Footer>
+      </Layout>
+    </Layout>
+  );
 };
 
 export default PageAdmin;
