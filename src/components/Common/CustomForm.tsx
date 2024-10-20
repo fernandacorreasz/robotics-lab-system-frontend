@@ -1,39 +1,40 @@
-import { Form, Input, Button } from 'antd';
 import React from 'react';
+import { Form, Input, FormItemProps } from 'antd';
 
-interface FormValues {
+interface FieldProps extends FormItemProps {
   name: string;
-  description: string;
+  label: string;
+  placeholder?: string;
+  type?: 'text' | 'textarea' | 'number' | 'date';
 }
 
-const CustomForm: React.FC = () => {
-  const [form] = Form.useForm();
+interface Props {
+  fields: FieldProps[];
+  initialValues?: Record<string, unknown>; 
+  onFinish: (values: Record<string, unknown>) => void; // Especificando tipo genérico seguro
+}
 
-  const onFinish = (values: FormValues) => {
-    console.log('Form Values:', values);
+const CustomForm: React.FC<Props> = ({ fields, initialValues, onFinish }) => {
+  const renderInput = (type: 'text' | 'textarea' | 'number' | 'date', placeholder?: string) => {
+    switch (type) {
+      case 'textarea':
+        return <Input.TextArea placeholder={placeholder} />;
+      case 'number':
+        return <Input type="number" placeholder={placeholder} />;
+      case 'date':
+        return <Input type="date" placeholder={placeholder} />;
+      default:
+        return <Input placeholder={placeholder} />;
+    }
   };
 
   return (
-    <Form form={form} onFinish={onFinish}>
-      <Form.Item
-        name="name"
-        label="Nome"
-        rules={[{ required: true, message: 'Por favor, insira um nome!' }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name="description"
-        label="Descrição"
-        rules={[{ required: true, message: 'Por favor, insira uma descrição!' }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Enviar
-        </Button>
-      </Form.Item>
+    <Form layout="vertical" initialValues={initialValues} onFinish={onFinish}>
+      {fields.map((field) => (
+        <Form.Item key={field.name} label={field.label} name={field.name} rules={field.rules}>
+          {renderInput(field.type || 'text', field.placeholder)}
+        </Form.Item>
+      ))}
     </Form>
   );
 };

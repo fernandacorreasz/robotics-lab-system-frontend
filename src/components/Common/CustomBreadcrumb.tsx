@@ -8,7 +8,7 @@ const CustomBreadcrumb: React.FC = () => {
   const pathnames = location.pathname.split('/').filter(x => x);
 
   return (
-    <Breadcrumb style={{ margin: '16px 0' }}>
+    <Breadcrumb style={{ margin: '16px' }}>
       {pathnames.length > 0 ? (
         <Breadcrumb.Item key="home">
           <Link to="/admin/dashboard">Home</Link>
