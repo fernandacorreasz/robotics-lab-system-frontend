@@ -1,15 +1,26 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
-import { DashboardOutlined, FileTextOutlined, BellOutlined, BookOutlined, MessageOutlined, BarChartOutlined, TrophyOutlined } from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import { LogoutOutlined, DashboardOutlined, FileTextOutlined, BellOutlined, BookOutlined, MessageOutlined, BarChartOutlined, TrophyOutlined } from '@ant-design/icons';
 
 const StudentSidebar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('permissionLevel');
+    navigate('/login');
+  };
+
   return (
     <Menu
       mode="inline"
       defaultSelectedKeys={['dashboard']}
       style={{ height: '100%', borderRight: 0 }}
     >
+      <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout}>
+        Logout
+      </Menu.Item>
       <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
         <Link to="/student/dashboard">Dashboard</Link>
       </Menu.Item>
