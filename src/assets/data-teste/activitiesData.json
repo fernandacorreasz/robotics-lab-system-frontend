@@ -1,0 +1,28 @@
+{
+    "content": [
+      {
+        "id": "e2a38b1c-f65d-441b-8fba-38ddce4425e9",
+        "activityTitle": "Seguidor de Linha",
+        "activityDescription": "Descrição da atividade",
+        "activityStatus": "InProgress",
+        "timeSpent": 120,
+        "startDate": "2024-10-20T10:00:00.000+00:00",
+        "endDate": "2024-10-20T12:00:00.000+00:00"
+      },
+      {
+        "id": "101f9cd9-ca61-4ea5-9407-f2073404be7d",
+        "activityTitle": "Trekking",
+        "activityDescription": "Descrição da atividade",
+        "activityStatus": "Completed",
+        "timeSpent": 120,
+        "startDate": "2024-10-20T10:00:00.000+00:00",
+        "endDate": "2024-10-20T12:00:00.000+00:00"
+      }
+    ],
+    "totalElements": 10,
+    "pageable": {
+      "pageNumber": 0,
+      "pageSize": 5
+    }
+  }
+  

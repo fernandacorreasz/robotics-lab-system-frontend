@@ -3,14 +3,7 @@ import { ConfigProvider, Table, Empty, TableProps as AntTableProps } from 'antd'
 import { TableRowSelection } from 'antd/es/table/interface';
 import { Theme } from '../../styles/ThemeComponent';
 
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    [key: string]: string | number;
-}
-
+// Remover a dependência de DataType
 interface CustomTableProps<T> {
     dataSource: T[];
     columns: AntTableProps<T>['columns'];
@@ -24,7 +17,7 @@ interface CustomTableProps<T> {
     rowKey?: string | ((record: T) => string) | undefined;
 }
 
-const TableComponent = <T extends DataType>({
+const TableComponent = <T extends object>({
     dataSource,
     columns,
     size,
@@ -34,7 +27,7 @@ const TableComponent = <T extends DataType>({
     style,
     loading,
     numberOfElements,
-    rowKey, // Recebendo rowKey como prop
+    rowKey,
 }: CustomTableProps<T>): React.ReactElement => {
     const handleRowOnClick = (record: T) => {
         if (onClick) {
@@ -58,7 +51,7 @@ const TableComponent = <T extends DataType>({
                 locale={{
                     emptyText: numberOfElements === 0 ? <Empty /> : null,
                 }}
-                rowKey={rowKey || 'key'} // Definindo valor padrão para rowKey
+                rowKey={rowKey || 'id'} // Ajuste para utilizar o 'id' do Activity como rowKey
             />
         </ConfigProvider>
     );

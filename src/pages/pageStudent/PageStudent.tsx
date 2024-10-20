@@ -18,7 +18,7 @@ const PageStudent: React.FC = () => {
         <StudentSidebar />
       </Sider>
       <Layout>
-        <Header style={{ background: '#001529', color: 'white', textAlign: 'center' }}>
+        <Header style={{color: 'white', textAlign: 'center' }}>
           Painel do Estudante
         </Header>
         <CustomBreadcrumb />
