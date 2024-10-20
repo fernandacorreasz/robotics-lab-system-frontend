@@ -36,6 +36,16 @@ const AppRoutes: React.FC = () => {
       />
     </Routes>
   );
+
+}
+
+export const routeNames: Record<string, string> = {
+  "/admin/dashboard": "Dashboard",
+  "/admin/manage-users": "Gerenciar Usuários",
+  "/admin/certificates": "Certificados",
+  "/admin/performance-reports": "Relatórios de Desempenho",
+  "/admin/forum-sac": "Fórum-SAC",
+  "/admin/profile-settings": "Configuração de Perfil"
 };
 
 export default AppRoutes;

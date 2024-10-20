@@ -8,12 +8,18 @@ const CustomBreadcrumb: React.FC = () => {
   const pathnames = location.pathname.split('/').filter(x => x);
 
   return (
-    <Breadcrumb>
+    <Breadcrumb style={{ margin: '16px 0' }}>
+      {pathnames.length > 0 ? (
+        <Breadcrumb.Item key="home">
+          <Link to="/admin/dashboard">Home</Link>
+        </Breadcrumb.Item>
+      ) : null}
+
       {pathnames.map((path, index) => {
         const url = `/${pathnames.slice(0, index + 1).join('/')}`;
         const routeName = routeNames[url] || path;
         const isLast = index === pathnames.length - 1;
-        
+
         return (
           <Breadcrumb.Item key={url}>
             {isLast ? (
