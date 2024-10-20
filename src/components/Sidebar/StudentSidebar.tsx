@@ -9,7 +9,7 @@ const StudentSidebar: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('permissionLevel');
-    navigate('/login');
+    navigate('/');
   };
 
   return (

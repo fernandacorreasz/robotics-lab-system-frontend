@@ -9,7 +9,7 @@ const LaboratoristSidebar: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('permissionLevel');
-    navigate('/login');
+    navigate('/');
   };
 
   return (
@@ -19,7 +19,7 @@ const LaboratoristSidebar: React.FC = () => {
       style={{ height: '100%', borderRight: 0 }}
     >
       <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout}>
-        Logout
+        Logout 
       </Menu.Item>
       <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
         <Link to="/laboratorist/dashboard">Dashboard</Link>

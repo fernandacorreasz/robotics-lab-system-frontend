@@ -10,6 +10,7 @@ export interface LoginData {
 export interface LoginResponse {
   token: string;
   permissionLevel: number;
+  name: string;
 }
 
 export const loginUser = async (loginData: LoginData): Promise<LoginResponse> => {
@@ -18,6 +19,7 @@ export const loginUser = async (loginData: LoginData): Promise<LoginResponse> =>
     
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('permissionLevel', response.data.permissionLevel.toString());
+    localStorage.setItem('name', response.data.name); 
     
     return response.data;
   } catch (error) {
