@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Layout } from 'antd';
 import AdminSidebar from '../../components/Sidebar/AdminSidebar';
 import CustomBreadcrumb from '../../components/Common/CustomBreadcrumb';
+import { Outlet } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -21,8 +22,8 @@ const PageAdmin: React.FC = () => {
           <div >Painel do Administrador</div>
         </Header>
         <CustomBreadcrumb />
-        <Content >
-          <h2>Bem-vindo ao painel do administrador!</h2>
+        <Content style={{ margin: '16px', padding: '24px', background: '#fff', minHeight: '280px' }}>
+          <Outlet />
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           ©2024 Robotics Lab Admin Panel

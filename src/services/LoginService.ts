@@ -16,7 +16,6 @@ export const loginUser = async (loginData: LoginData): Promise<LoginResponse> =>
   try {
     const response = await axios.post<LoginResponse>(`${API_URL}auth/login`, loginData);
     
-    // Armazenar token e nível de permissão no localStorage
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('permissionLevel', response.data.permissionLevel.toString());
     
