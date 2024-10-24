@@ -9,7 +9,10 @@ import { Activity } from "../../models/Activity";
 import data from "../../assets/data-teste/activitiesData.json";
 import { RobotOutlined } from "@ant-design/icons";
 import HeaderCard from "../../components/Cards/HeaderCardStudants";
+import CustomComment from "../../components/Common/CommentSection";
+import CodeInput from "../../components/Common/CodeInput";
 
+/* TODO: Necessário intregar a api de atividades , comentarios e fotos de atividades  */
 const ActivitiesStudent: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [filteredActivities, setFilteredActivities] = useState<Activity[]>([]);
@@ -22,6 +25,7 @@ const ActivitiesStudent: React.FC = () => {
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(
     null
   );
+  const [comments, setComments] = useState<string[]>([]);
 
   useEffect(() => {
     setActivities(data.content);
@@ -29,12 +33,17 @@ const ActivitiesStudent: React.FC = () => {
     setTotal(data.totalElements);
   }, []);
 
+ 
+   
   const handleFilter = (value: string) => {
     const filtered = activities.filter((activity) =>
       activity.activityTitle.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredActivities(filtered);
   };
+  const handleCodeSave = (newCode: string) => {
+    console.log('Código salvo:', newCode);
+  }
 
   const handleAdd = () => setIsAddModalVisible(true);
   const handleEdit = (record: Activity) => {
@@ -45,7 +54,14 @@ const ActivitiesStudent: React.FC = () => {
 
   const handleView = (record: Activity) => {
     setSelectedActivity(record);
+    setComments([]);
     setIsViewModalVisible(true);
+  };
+
+  const handleAddComment = (comment: string) => {
+    if (selectedActivity) {
+      setComments([...comments, comment]); // Adiciona o novo comentário
+    }
   };
 
   const columns = [
@@ -145,6 +161,7 @@ const ActivitiesStudent: React.FC = () => {
       endDate: activity.endDate,
     };
   };
+  
 
   return (
     <div>
@@ -237,6 +254,8 @@ const ActivitiesStudent: React.FC = () => {
               <strong>Data Final:</strong>{" "}
               {new Date(selectedActivity.endDate).toLocaleDateString()}
             </p>
+            <CodeInput onSave={handleCodeSave} />
+            <CustomComment comments={comments} onAddComment={handleAddComment} />
           </div>
         )}
       </CustomModal>

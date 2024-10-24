@@ -5,7 +5,6 @@ import './App.css';
 import { ConfigProvider } from 'antd';
 import { Theme } from './styles/ThemeComponent';
 
-
 function App() {
   return (
     <ConfigProvider theme={Theme}>
