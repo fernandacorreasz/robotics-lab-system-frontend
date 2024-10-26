@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import { Card, Col, Row } from 'antd';
 import dashboardData from '../../assets/data-teste/mockDashboardStudantData.json'; // Importar o JSON
+import HeaderCard from '../../components/Cards/HeaderCardStudants';
 
 // Tipos para os dados do Dashboard
 interface ActivityMetrics {
@@ -44,6 +45,7 @@ const DashboardStudent: React.FC = () => {
 
   return (
     <div style={{ padding: '20px' }}>
+      <HeaderCard />
       <Row gutter={[16, 16]}>
         {/* Atividades Concluídas - Radar Chart */}
         <Col span={12}>
