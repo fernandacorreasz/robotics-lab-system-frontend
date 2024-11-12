@@ -8,7 +8,6 @@ import {
   BellOutlined,
   BookOutlined,
   MessageOutlined,
-  BarChartOutlined,
   TrophyOutlined,
 } from '@ant-design/icons';
 
@@ -49,9 +48,6 @@ const StudentSidebar: React.FC = () => {
       </Menu.Item>
       <Menu.Item key="forum" icon={<MessageOutlined />} style={{ textAlign: 'left' }}>
         <Link to="/student/forum">Fórum</Link>
-      </Menu.Item>
-      <Menu.Item key="reports" icon={<BarChartOutlined />} style={{ textAlign: 'left' }}>
-        <Link to="/student/reports">Relatórios</Link>
       </Menu.Item>
       <Menu.Item key="request-certificate" icon={<TrophyOutlined />} style={{ textAlign: 'left' }}>
         <Link to="/student/request-certificate">Solicitar Certificado</Link>

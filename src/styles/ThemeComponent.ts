@@ -1,38 +1,38 @@
 export const Theme = {
     token: {
-      colorPrimary: '#7126E3',
-      colorInfo: '#7126E3',
+      colorPrimary: '#69c4d3',
+      colorInfo: '#69c4d3',
       colorSuccess: '#00612e',
       colorWarning: '#ffd600',
       colorError: '#A31F00',
       colorTextBase: 'rgb(52, 71, 103)',
       colorBgContainer: '#fff',
       borderRadiusLG: 4,
-      itemBg: '#7126E3',
+      itemBg: '#69c4d3',
     },
     components: {
       Layout: {
         algorithm: true,
         borderRadiusLG: 4,
-        triggerBg: '#7126E3',
-        siderBg: '#7126E3',
-        headerBg: '#7126E3',
-        headerColor: '#7126E3',
-        lightTriggerColor: '#000',
+        triggerBg: '#000',
+        siderBg:  '#000',
+        headerBg: '#fff',
+        headerColor:  '#fff',
+        lightTriggerColor: '#fff',
         footerBg: "rgb(255, 255, 255)",
         bodyBg: "rgb(255, 255, 255)"
       },
       
       Menu: {
         algorithm: true,
-        itemBg: '#7126E3',
+        itemBg: '#000',
         colorText: '#fff',
         darkItemSelectedBg: '#fff',
         borderRadiusLG: 4,
-        darkPopupBg: '#000',
-        darkSubMenuItemBg: '#000',
+        darkPopupBg: '#fff',
+        darkSubMenuItemBg: '#fff',
         itemSelectedColor: '#fff',
-        itemSelectedBg: "#42176b"
+        itemSelectedBg: "#69c4d3"
       },
       Button: {
         algorithm: true,
@@ -45,7 +45,7 @@ export const Theme = {
       },
       Table: {
         algorithm: true,
-        headerBg: "#42176b",
+        headerBg: "#000",
         headerColor: "rgba(255, 255, 255, 0.88)",
         headerSplitColor: "rgb(166, 166, 166)",
         colorText: "rgba(115, 115, 115, 0.88)",
@@ -111,10 +111,10 @@ export const Theme = {
       },
       Select: {
         clearBg: "rgb(255, 255, 255)",
-        optionActiveBg: "rgba(0, 0, 0, 0.01)",
+        optionActiveBg: '#fff',
         colorText: "rgb(52, 71, 103)",
         multipleItemColorDisabled: "rgba(0, 0, 0, 0.02)",
-        selectorBg: "#000"
+        selectorBg: '#fff',
       },
       Divider: {
         marginLG: 10,

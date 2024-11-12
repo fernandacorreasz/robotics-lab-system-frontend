@@ -23,8 +23,11 @@ import ActivitiesStudent from "../pages/pageStudent/ActivitiesStudent";
 import ComponentsLibraryStudent from "../pages/pageStudent/ComponentsLibraryStudent";
 import NotificationsStudent from "../pages/pageStudent/NotificationsStudent";
 import ForumStudent from "../pages/pageStudent/ForumStudent";
-import ReportsStudent from "../pages/pageStudent/ReportsStudent";
 import RequestCertificateStudent from "../pages/pageStudent/RequestCertificateStudent";
+import ComponentDetails from "../components/ElectronicComponentsinventory/ComponentDetailsStudent";
+import PostDetails from "../components/Forum/PostDetails";
+import ViewActivity from "../pages/pageStudent/info/ViewActivity";
+import AddActivity from "../pages/pageStudent/info/AddActivity";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -71,6 +74,7 @@ const AppRoutes: React.FC = () => {
         <Route path="manage-users" element={<ManageUsersLaboratorist />} />
       </Route>
 
+
       <Route
         path="/student"
         element={
@@ -81,13 +85,16 @@ const AppRoutes: React.FC = () => {
       >
         <Route path="dashboard" element={<DashboardStudent />} />
         <Route path="activities" element={<ActivitiesStudent />} />
+        <Route path="activities/view/:activityId" element={<ViewActivity />} />
+        <Route path="activities/add" element={<AddActivity />} />
         <Route
           path="components-library"
           element={<ComponentsLibraryStudent />}
         />
+        <Route path="components-library/:name" element={<ComponentDetails />} />
         <Route path="notifications" element={<NotificationsStudent />} />
         <Route path="forum" element={<ForumStudent />} />
-        <Route path="reports" element={<ReportsStudent />} />
+        <Route path="forum/:postId" element={<PostDetails />} />
         <Route
           path="request-certificate"
           element={<RequestCertificateStudent />}

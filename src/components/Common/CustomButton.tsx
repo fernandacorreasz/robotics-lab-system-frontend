@@ -1,15 +1,17 @@
-import { Button } from 'antd';
-import React from 'react';
+// CustomButton.tsx
+import React from "react";
+import { Button } from "antd";
+import { ButtonProps } from "antd/lib/button";
 
-interface Props {
-  type?: 'primary' | 'default' | 'dashed' | 'text' | 'link';
+interface Props extends ButtonProps {
   text: string;
-  onClick: () => void;
+  icon?: React.ReactNode;
+  danger?: boolean;
 }
 
-const CustomButton: React.FC<Props> = ({ type = 'primary', text, onClick }) => {
+const CustomButton: React.FC<Props> = ({ type = "primary", text, icon, onClick, danger = false }) => {
   return (
-    <Button type={type} onClick={onClick}>
+    <Button type={type} icon={icon} onClick={onClick} danger={danger}>
       {text}
     </Button>
   );

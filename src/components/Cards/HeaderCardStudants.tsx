@@ -14,7 +14,7 @@ const HeaderCard: React.FC = () => {
     >
       <Row align="middle" justify="start">
         <Col span={20}>
-          <h4 style={{ color: "#8e44ad", margin: 0, textAlign: "left" }}>
+          <h4 style={{ color: "#69c4d3", margin: 0, textAlign: "left" }}>
             Vamos Conferir Suas Proezas no Laboratório!
           </h4>
           <p style={{ margin: 0, textAlign: "left" }}>

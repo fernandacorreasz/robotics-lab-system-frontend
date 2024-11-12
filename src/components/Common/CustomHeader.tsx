@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { styled } from 'styled-components';
 
 export const StyledHeader = styled(Layout.Header)`
-  background-color: white;
+  background-color: #000;
   height: 7vh;
   display: flex;
   align-items: center;
