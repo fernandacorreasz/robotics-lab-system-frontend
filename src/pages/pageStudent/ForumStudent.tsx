@@ -22,6 +22,8 @@ interface CommentForum {
 const ForumStudent: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [filterText, setFilterText] = useState('');
+  const [showMyPosts, setShowMyPosts] = useState(false);
+  const currentUser = "NomeDoUsuario"; // Substitua pelo nome do usuário atual
 
   useEffect(() => {
     // Carregar os dados do JSON
@@ -29,22 +31,50 @@ const ForumStudent: React.FC = () => {
   }, []);
 
   const filteredPosts = posts.filter(post =>
-    post.title.toLowerCase().includes(filterText.toLowerCase()) ||
-    post.content.toLowerCase().includes(filterText.toLowerCase())
+    (post.title.toLowerCase().includes(filterText.toLowerCase()) ||
+    post.content.toLowerCase().includes(filterText.toLowerCase())) &&
+    (!showMyPosts || post.author === currentUser) // Filtra por autor se showMyPosts for verdadeiro
   );
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Fórum - Estudante</h2>
+  
 
-      {/* Filtro de Perguntas */}
+  <Card
+        style={{
+          marginBottom: "20px",
+          padding: "12px",
+          borderRadius: "10px",
+          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <Row align="middle" justify="start">
+          <Col span={20}>
+            <h4 style={{ color: "#8e44ad", margin: 0, textAlign: "left" }}>
+              Fique atento às suas notificações
+            </h4>
+            <p style={{ margin: 0, textAlign: "left" }}>
+              Aqui você terá as notificações sobre suas atividades e atrasos de empréstimos, respostas de fórum e muito mais.
+            </p>
+          </Col>
+        </Row>
+      </Card>
       <Row gutter={16} style={{ marginBottom: '20px' }}>
-        <Col span={18}>
+        <Col span={12}>
           <Input
             placeholder="Filtrar Pergunta"
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
           />
+        </Col>
+        <Col span={6}>
+          <Button
+            type={showMyPosts ? "primary" : "default"}
+            onClick={() => setShowMyPosts(!showMyPosts)}
+            style={{ width: '100%' }}
+          >
+            Minhas Perguntas
+          </Button>
         </Col>
         <Col span={6}>
           <Link to="/student/forum/add" style={{ display: 'inline-block', width: '100%', textAlign: 'center' }}>

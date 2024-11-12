@@ -11,6 +11,7 @@ export interface LoginResponse {
   token: string;
   permissionLevel: number;
   name: string;
+  userId: string;
 }
 
 export const loginUser = async (loginData: LoginData): Promise<LoginResponse> => {
@@ -20,7 +21,7 @@ export const loginUser = async (loginData: LoginData): Promise<LoginResponse> =>
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('permissionLevel', response.data.permissionLevel.toString());
     localStorage.setItem('name', response.data.name); 
-    
+    localStorage.setItem('userId', response.data.userId); 
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -26,6 +26,8 @@ import ForumStudent from "../pages/pageStudent/ForumStudent";
 import RequestCertificateStudent from "../pages/pageStudent/RequestCertificateStudent";
 import ComponentDetails from "../components/ElectronicComponentsinventory/ComponentDetailsStudent";
 import PostDetails from "../components/Forum/PostDetails";
+import ViewActivity from "../pages/pageStudent/info/ViewActivity";
+import AddActivity from "../pages/pageStudent/info/AddActivity";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -72,6 +74,7 @@ const AppRoutes: React.FC = () => {
         <Route path="manage-users" element={<ManageUsersLaboratorist />} />
       </Route>
 
+
       <Route
         path="/student"
         element={
@@ -82,6 +85,8 @@ const AppRoutes: React.FC = () => {
       >
         <Route path="dashboard" element={<DashboardStudent />} />
         <Route path="activities" element={<ActivitiesStudent />} />
+        <Route path="activities/view/:activityId" element={<ViewActivity />} />
+        <Route path="activities/add" element={<AddActivity />} />
         <Route
           path="components-library"
           element={<ComponentsLibraryStudent />}
