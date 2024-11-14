@@ -4,7 +4,7 @@ import AdminSidebar from '../../components/Sidebar/AdminSidebar';
 import CustomBreadcrumb from '../../components/Common/CustomBreadcrumb';
 import { Outlet } from 'react-router-dom';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const PageAdmin: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -18,11 +18,8 @@ const PageAdmin: React.FC = () => {
         <AdminSidebar />
       </Sider>
       <Layout  style={{width: 'max-content' }}>
-        <Header>
-          <div >Painel do Administrador</div>
-        </Header>
         <CustomBreadcrumb />
-        <Content style={{ margin: '16px', padding: '24px', background: '#fff', minHeight: '280px' }}>
+        <Content style={{ margin: '16px', padding: '16px', background: '#fff', minHeight: '280px' }}>
           <Outlet />
         </Content>
         <Footer style={{ textAlign: 'center' }}>
